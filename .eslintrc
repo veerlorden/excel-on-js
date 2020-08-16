@@ -7,7 +7,9 @@
     },
     "rules": {
         "semi":"off",
-        "comma-dangle":"off"
+        "comma-dangle":"off",
+        "linebreak-style":"off",
+        "object-curly-spacing":"off"
     },
-    "extends": ["eslint:recommended", "airbnb"]
+    "extends": ["eslint:recommended", "google"]
 }
