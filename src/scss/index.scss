@@ -9,19 +9,19 @@
 @import "dashboard.scss";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .excel {
-    position: relative;
-    color: #888;
-    height: 100%;
-    max-width: 100%;
-    font-size: .8rem;
+  position: relative;
+  color: #888;
+  height: 100%;
+  max-width: 100%;
+  font-size: .8rem;
 }
