@@ -4,7 +4,7 @@ import { resizeHandler } from './table.resize';
 import { shouldResize, isCell, isShiftPressed,
   nextSelector, matrix } from './table.functions';
 import { TableSelection } from './TableSelection';
-import { $ } from './../../core/dom'
+import { $ } from '../../core/dom'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
