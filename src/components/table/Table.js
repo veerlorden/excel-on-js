@@ -5,6 +5,7 @@ import { shouldResize, isCell, isShiftPressed,
   nextSelector, matrix } from './table.functions';
 import { TableSelection } from './TableSelection';
 import { $ } from './../../core/dom'
+import * as actions from '../../redux/actions';
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -44,9 +45,18 @@ export class Table extends ExcelComponent {
     this.$emit('table:select', $cell)
   }
 
+  async resizeTable(event) {
+    try {
+      const data = await resizeHandler(event, this.$root)
+      this.$dispatch(actions.tableResize(data))
+    } catch (error) {
+      console.warn(error)
+    }
+  }
+
   onMousedown(event) {
     if (shouldResize()) {
-      return resizeHandler(event, this.$root)
+      this.resizeTable(event)
     } else if (isCell()) {
       const $target = $(event.target)
       this.$emit('table:select', $target)
@@ -55,7 +65,7 @@ export class Table extends ExcelComponent {
             .map(id => this.$root.find(`[data-id="${id}"]`))
         this.selection.selectGroup($cells)
       } else {
-        this.selection.select($target)
+        this.selectCell($target)
       }
     }
   }
