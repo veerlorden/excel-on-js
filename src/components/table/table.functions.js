@@ -1,4 +1,4 @@
-import {range} from './../../core/utils'
+import {range} from '../../core/utils'
 
 export function shouldResize() {
   return event.target.dataset.resize
