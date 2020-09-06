@@ -1,17 +1,18 @@
-import { ExcelComponent } from '../../core/ExcelComponent';
-import { createTable } from './table.template';
-import { resizeHandler } from './table.resize';
+import { ExcelComponent } from '../../core/ExcelComponent'
+import { createTable } from './table.template'
+import { resizeHandler } from './table.resize'
+import { TableSelection } from './TableSelection'
+import { $ } from './../../core/dom'
+import * as actions from '../../redux/actions'
+import { defaultStyles } from '../../constants'
+import { parse } from '../../core/parse'
 import {
   shouldResize,
   isCell,
   isShiftPressed,
   nextSelector,
   matrix
-} from './table.functions';
-import { TableSelection } from './TableSelection';
-import { $ } from './../../core/dom'
-import * as actions from '../../redux/actions';
-import { defaultStyles } from '../../constants';
+} from './table.functions'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -38,9 +39,11 @@ export class Table extends ExcelComponent {
     const $cell = this.$root.find('[data-id="0:0"]')
     this.selectCell($cell)
 
-    this.$on('formula:input', text => {
-      this.selection.current.text(text)
-      this.updateTextInStore(text)
+    this.$on('formula:input', value => {
+      this.selection.current
+          .attr('data-value', value)
+          .text(parse(value))
+      this.updateTextInStore(value)
     })
     this.$on('formula:enter', () => {
       this.selection.current.focus()
